@@ -1,12 +1,31 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { LPRotate } from '../animation/CCCRoomAnimation';
+import styled, { css, Keyframes } from 'styled-components';
+import { LPDrop } from '../animation/CCCRoomAnimation';
+import sleepingbeauty from '../assets/music/paul_sleepingBeauty.mp3';
 
-function CCCRoomComponent() {
+type Props = {
+    lpAni?: Keyframes;
+    refLP: React.Ref<HTMLDivElement>;
+    onLpRotate: () => void;
+    offLpRotate: () => void;
+}
+
+function CCCRoomComponent(props: Props) {
     return (
         <CCCRoom>
+            <audio 
+                controls 
+                onPlay={() => props.onLpRotate()}
+                onPause={() => props.offLpRotate()}>
+                <source src={sleepingbeauty} />
+            </audio>
             <LPBox>
-                <LP>
+                <LP 
+                    ref={props.refLP}
+                    styleProps={{
+                        animation: props.lpAni
+                    }}
+                    >
                     <LPFront>
                         <LPHole/>
                     </LPFront>
@@ -153,7 +172,11 @@ const LPBoxBack = styled.div`
     transform: translateZ(-2.5rem);
 `;
 
-const LP = styled.div`
+type LPProps = {
+    animation?: Keyframes;
+}
+
+const LP = styled.div<{styleProps: LPProps}>`
     position: absolute;
     top: 50%;
     left: 50%;
@@ -162,10 +185,13 @@ const LP = styled.div`
     height: 300px;
 
     margin: -150px 0 0 -150px;
-
     transform-style: preserve-3d;
 
-    ${css`animation: ${LPRotate} 1s infinite linear;`}
+    ${props => props.styleProps.animation && 
+        props.styleProps.animation === LPDrop ?
+            css`animation: ${props.styleProps.animation} 1s` :
+            css`animation: ${props.styleProps.animation} 1s linear infinite`  
+    }
 `;
 
 const LPFront = styled.div`
@@ -182,7 +208,7 @@ const LPFront = styled.div`
 
     border: 2px solid rgb(0,0,0);
     border-radius: 100%;
-    background: linear-gradient(70deg, blue, pink);
+    background: linear-gradient(70deg, orange, yellow);
     /* background-color: rgb(255,255,255); */
 
     transform: translateZ(10px);
