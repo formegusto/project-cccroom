@@ -1,47 +1,171 @@
 import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
+import { LPRotate } from '../animation/CCCRoomAnimation';
 
 function CCCRoomComponent() {
     return (
         <CCCRoom>
-            <LP>
-                <LPFront>
-                    <LPHole/>
-                </LPFront>
-                <LPBack>
-                    <LPHole/>
-                </LPBack>
-            </LP>
+            <LPBox>
+                <LP>
+                    <LPFront>
+                        <LPHole/>
+                    </LPFront>
+                    <LPBack>
+                        <LPHole/>
+                    </LPBack>
+                </LP>
+                <LPBoxBlock>
+                    <LPBoxFront/>
+                    <LPBoxBack/>
+                    <LPBoxLeft/>
+                    <LPBoxRight/>
+                    <LPEdgeLeft/>
+                    <LPEdgeRight/>
+                </LPBoxBlock>
+            </LPBox>
         </CCCRoom>
     )
 }
 
 const CCCRoom = styled.div`
+    width: 100vw;
+    height: 100vh;
+
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 
     perspective: 1000px;
 `;
 
-const LPRotate = keyframes`
-    from {
-        transform: rotateX(45deg) rotateZ(0deg);
-    } to {
-        transform: rotateX(45deg) rotatez(360deg);
+const LPBox = styled.div`
+    width: 400px;
+    height: 400px;
+
+    transform: translateY(-10rem) rotateX(70deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+`;
+
+const LPBoxBlock = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+
+    & > div {
+        box-sizing: border-box;
     }
 `;
 
+const LPEdgeLeft = styled.div`
+    position: absolute;
+    top: 100%;
+    left: .75rem;
+
+    z-index: 2;
+
+    width: 3px;
+    height: calc(2.5rem);
+    background-color: rgb(0,0,0);
+
+    transform: rotateX(-90deg);
+    transform-origin: 100% 0;
+`;
+
+const LPEdgeRight = styled.div`
+    position: absolute;
+    top: .75rem;
+    left: 100%;
+
+    z-index: 2;
+
+    width: calc(2.5rem);
+    height: 3px;
+    background-color: rgb(0,0,0);
+
+    transform: rotateY(90deg);
+    transform-origin: 0 50%;
+`
+
+const LPBoxLeft = styled.div`
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    z-index: 1;
+
+    width: 100%;
+    height: calc(2.5rem - 2px);
+    background-color: rgb(255,255,255);
+
+    border-end-start-radius: 1rem;
+    border-end-end-radius: 1rem;
+    transform: rotateX(-90deg);
+    transform-origin: 0 0;
+`;
+
+const LPBoxRight = styled.div`
+    position: absolute;
+    top: 0;
+    left: 100%;
+
+    z-index: 1;
+
+    width: calc(2.5rem - 2px);
+    height: 100%;
+    background-color: rgb(255,255,255);
+
+    border-start-end-radius: 1rem;
+    border-end-end-radius: 1rem;
+    transform: rotateY(90deg);
+    transform-origin: 0 0;
+`;
+
+const LPBoxFront = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: 2px solid rgb(0,0,0);
+    border-radius: 1rem;
+    background-color: rgb(255,255,255);
+`;
+
+const LPBoxBack = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: 2px solid rgb(0,0,0);
+    border-radius: 1rem;
+    background-color: rgb(255,255,255);
+
+    transform: translateZ(-2.5rem);
+`;
+
 const LP = styled.div`
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 
     width: 300px;
     height: 300px;
 
-    transform: rotateX(45deg) rotateZ(45deg);
+    margin: -150px 0 0 -150px;
+
     transform-style: preserve-3d;
 
-    ${css`animation: ${LPRotate} 1s infinite linear`}
+    ${css`animation: ${LPRotate} 1s infinite linear;`}
 `;
 
 const LPFront = styled.div`
@@ -53,8 +177,8 @@ const LPFront = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 300px;
 
     border: 2px solid rgb(0,0,0);
     border-radius: 100%;
@@ -74,8 +198,8 @@ const LPBack = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 300px;
 
     border: 2px solid rgb(0,0,0);
     border-radius: 100%;
