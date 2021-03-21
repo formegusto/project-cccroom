@@ -6,28 +6,38 @@ import { Keyframes } from 'styled-components';
 function CCCRoomContainer() {
     const [lpAni, setLpAni] = useState<Keyframes>(LPDrop);
     const refLP = useRef<HTMLDivElement>(null);
+    const refAudio = useRef<HTMLAudioElement>(null);
 
-    const onLpRotate = useCallback(() => {
-        if(refLP.current) {
-            if(lpAni === LPRotate){
-                refLP.current.style.animationPlayState = "";
+    const setLpRotate = useCallback(() => {
+        if(refAudio.current){
+            if(refAudio.current.paused) {
+                if(refAudio.current) {
+                    refAudio.current.play();
+                }
+                if(refLP.current) {
+                    if(lpAni === LPRotate){
+                        refLP.current.style.animationPlayState = "";
+                    } else {
+                        setLpAni(LPRotate);
+                    }
+                }
             } else {
-                setLpAni(LPRotate);
+                if(refAudio.current) {
+                refAudio.current.pause();
+                } 
+                if(refLP.current) {
+                    refLP.current.style.animationPlayState = "paused";
+                }   
             }
         }
+        
     }, [lpAni]);
-
-    const offLpRotate = useCallback(() => {
-        if(refLP.current) {
-            refLP.current.style.animationPlayState = "paused";
-        }
-    }, [])
     
     return <CCCRoomComponent
         lpAni={lpAni}
         refLP={refLP}
-        onLpRotate={onLpRotate}
-        offLpRotate={offLpRotate}
+        refAudio={refAudio}
+        setLpRotate={setLpRotate}
     />
 }
 

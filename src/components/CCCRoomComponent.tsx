@@ -6,21 +6,20 @@ import sleepingbeauty from '../assets/music/paul_sleepingBeauty.mp3';
 type Props = {
     lpAni?: Keyframes;
     refLP: React.Ref<HTMLDivElement>;
-    onLpRotate: () => void;
-    offLpRotate: () => void;
+    refAudio: React.Ref<HTMLAudioElement>;
+    setLpRotate: () => void;
 }
 
 function CCCRoomComponent(props: Props) {
     return (
         <CCCRoom>
-            <audio 
-                controls 
-                onPlay={() => props.onLpRotate()}
-                onPause={() => props.offLpRotate()}>
+            <CCCAudio
+                ref={props.refAudio}>
                 <source src={sleepingbeauty} />
-            </audio>
+            </CCCAudio>
             <LPBox>
                 <LP 
+                    onClick={props.setLpRotate}
                     ref={props.refLP}
                     styleProps={{
                         animation: props.lpAni
@@ -45,6 +44,9 @@ function CCCRoomComponent(props: Props) {
         </CCCRoom>
     )
 }
+
+const CCCAudio = styled.audio`
+`;
 
 const CCCRoom = styled.div`
     width: 100vw;
@@ -186,6 +188,8 @@ const LP = styled.div<{styleProps: LPProps}>`
 
     margin: -150px 0 0 -150px;
     transform-style: preserve-3d;
+
+    cursor: pointer;
 
     ${props => props.styleProps.animation && 
         props.styleProps.animation === LPDrop ?
