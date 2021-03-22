@@ -4,9 +4,32 @@ import { LPDrop ,LPRotate } from '../animation/CCCRoomAnimation';
 import { Keyframes } from 'styled-components';
 
 function CCCRoomContainer() {
-    const [lpAni, setLpAni] = useState<Keyframes>(LPDrop);
+    const [lpAni, setLpAni] = useState<Keyframes | null>(null);
     const refLP = useRef<HTMLDivElement>(null);
     const refAudio = useRef<HTMLAudioElement>(null);
+
+
+    const openLpBook = useCallback((e: React.MouseEvent) => {
+        const lpFront = e.target as HTMLDivElement;
+
+        lpFront.style.transform = "rotateX(-7.5deg)";
+
+        const lpBook = lpFront.parentNode;
+        const lpDummy = lpBook?.querySelector("div:nth-child(2)") as HTMLDivElement;
+        lpDummy.style.transform = "translateY(-150px)";
+        lpDummy.addEventListener('click', function(this:HTMLDivElement){
+            this.style.transform = "translateY(-200rem) translateZ(300px)";
+            this.addEventListener('transitionend', function(this:HTMLDivElement) {
+                setLpAni(LPDrop);
+            })
+            setTimeout(function () {
+                window.scrollTo({
+                    top: window.innerHeight,
+                    behavior: 'smooth'
+                })
+            }, 1000);
+        });
+    }, []);
 
     const setLpRotate = useCallback(() => {
         if(refAudio.current){
@@ -38,6 +61,7 @@ function CCCRoomContainer() {
         refLP={refLP}
         refAudio={refAudio}
         setLpRotate={setLpRotate}
+        openLpBook={openLpBook}
     />
 }
 

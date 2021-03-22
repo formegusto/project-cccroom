@@ -4,10 +4,11 @@ import { LPDrop } from '../animation/CCCRoomAnimation';
 import sleepingbeauty from '../assets/music/paul_sleepingBeauty.mp3';
 
 type Props = {
-    lpAni?: Keyframes;
+    lpAni?: Keyframes | null;
     refLP: React.Ref<HTMLDivElement>;
     refAudio: React.Ref<HTMLAudioElement>;
     setLpRotate: () => void;
+    openLpBook: (e: React.MouseEvent) => void;
 }
 
 function CCCRoomComponent(props: Props) {
@@ -17,6 +18,59 @@ function CCCRoomComponent(props: Props) {
                 ref={props.refAudio}>
                 <source src={sleepingbeauty} />
             </CCCAudio>
+            <LPBrary>
+                <LPBookGroup>
+                    <LPBook>
+                        <LPBookBack />
+                        <LPDummy/>
+                        <LPBookFront onClick={props.openLpBook}/>
+                    </LPBook>
+                    <LPBook>
+                        <LPBookBack />
+                        <LPDummy/>
+                        <LPBookFront onClick={props.openLpBook}/>
+                    </LPBook>
+                    <LPBook>
+                        <LPBookBack />
+                        <LPDummy/>
+                        <LPBookFront onClick={props.openLpBook}/>
+                    </LPBook>
+                </LPBookGroup>
+                <LPBookGroup>
+                    <LPBook>
+                        <LPBookBack />
+                        <LPDummy/>
+                        <LPBookFront onClick={props.openLpBook}/>
+                    </LPBook>
+                    <LPBook>
+                        <LPBookBack />
+                        <LPDummy/>
+                        <LPBookFront onClick={props.openLpBook}/>
+                    </LPBook>
+                    <LPBook>
+                        <LPBookBack />
+                        <LPDummy/>
+                        <LPBookFront onClick={props.openLpBook}/>
+                    </LPBook>
+                </LPBookGroup>
+                <LPBookGroup>
+                    <LPBook>
+                        <LPBookBack />
+                        <LPDummy/>
+                        <LPBookFront onClick={props.openLpBook}/>
+                    </LPBook>
+                    <LPBook>
+                        <LPBookBack />
+                        <LPDummy/>
+                        <LPBookFront onClick={props.openLpBook}/>
+                    </LPBook>
+                    <LPBook>
+                        <LPBookBack />
+                        <LPDummy/>
+                        <LPBookFront onClick={props.openLpBook}/>
+                    </LPBook>
+                </LPBookGroup>
+            </LPBrary>
             <LPBox>
                 <LP 
                     onClick={props.setLpRotate}
@@ -49,12 +103,6 @@ function CCCRoomComponent(props: Props) {
                                 <LPStickRight />
                             </LPStickBottom>
                         </LPStick>
-                        {/* <LPPin>
-                            <LPPinTop/>
-                            <LPPinBottom />
-                            <LPPinLeft />
-                            <LPPinRight />
-                        </LPPin> */}
                     </LPBoxFront>
                     <LPBoxBack/>
                     <LPBoxLeft/>
@@ -66,6 +114,98 @@ function CCCRoomComponent(props: Props) {
         </CCCRoom>
     )
 }
+
+const LPDummy = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    border: 2px solid rgb(0,0,0);
+    border-radius: 100%;
+
+    background-color: rgb(255,255,255);
+    transition: 1s;
+
+    cursor: pointer;
+`;
+
+const LPBookGroup = styled.div`
+    display: flex;
+
+    flex-direction: column;
+
+    & > div:not(:last-child) {
+        margin: 0 0 1rem 0;
+    }
+`;
+
+const LPBookFront = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    border: 2px solid rgb(0,0,0);
+
+    /* transform: rotateX(-5deg); */
+    transform-origin: 50% 100%;
+
+    background-color: rgb(255,255,255);
+
+    transition: 1s;
+    cursor: pointer;
+`;
+
+const LPBookBack = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    border: 2px solid rgb(0,0,0);
+
+    background-color: rgb(255,255,255);
+`;
+
+const LPBook = styled.div`
+    position: relative;
+
+    width: 300px;
+    height: 300px;
+
+    transform-style: preserve-3d;
+`;
+
+const LPBrary = styled.div`
+    position: absolute;
+
+    display: flex;
+
+    top: 0;
+    left: 50%;
+    margin: 0 0 0 -450px;
+    box-sizing: border-box;
+
+
+    transform: translateZ(-300px) translateY(-3rem);
+    transform-style: preserve-3d;
+
+    & > div:not(:last-child) {
+        margin: 0 1rem 0 0;
+    }
+`;
 
 const LPStickBody = styled.div`
     position: relative;
@@ -195,92 +335,30 @@ const LPStick = styled.div`
     border: 1px solid rgb(0,0,0);
 `;
 
-const LPPin = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -10px 0 0 -10px;
-
-    width: 10px;
-    height: 10px;
-
-    transform-style: preserve-3d;
-`;
-
-const LPPinTop = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: rgb(0,0,0);
-
-    transform: translateZ(9px);
-    border-start-start-radius: 100%;
-`;
-
-const LPPinBottom = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    border-radius: 100%;
-
-    background-color: rgb(0,0,0);
-`;
-
-const LPPinLeft = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    transform: rotateX(-90deg);
-    transform-origin: 50% 100%;
-
-    background-color: rgb(0,0,0);
-`;
-
-const LPPinRight = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    transform: rotateY(90deg);
-    transform-origin: 100% 50%;
-
-    background-color: rgb(0,0,0);
-`;
-
 const CCCAudio = styled.audio`
 `;
 
 const CCCRoom = styled.div`
-    width: 100vw;
-    height: 100vh;
+    position: relative;
 
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    width: 100vw;
+    height: 200vh;
+
 
     perspective: 1000px;
 `;
 
 const LPBox = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
     width: 500px;
     height: 400px;
 
-    transform: translateY(-10rem) rotateX(70deg) rotateZ(45deg);
+    margin: 0 0 0 -250px;
+
+    transform: translateY(-20rem) rotateX(95deg) rotateZ(45deg);
     transform-style: preserve-3d;
 `;
 
@@ -394,7 +472,7 @@ const LPBoxBack = styled.div`
 `;
 
 type LPProps = {
-    animation?: Keyframes;
+    animation?: Keyframes | null;
 }
 
 const LP = styled.div<{styleProps: LPProps}>`
