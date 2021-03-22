@@ -7,6 +7,8 @@ type Props = {
     lpAni?: Keyframes | null;
     refLP: React.Ref<HTMLDivElement>;
     refAudio: React.Ref<HTMLAudioElement>;
+    refStick: React.Ref<HTMLDivElement>;
+    refStickBody: React.Ref<HTMLDivElement>;
     setLpRotate: () => void;
     openLpBook: (e: React.MouseEvent) => void;
 }
@@ -22,52 +24,106 @@ function CCCRoomComponent(props: Props) {
                 <LPBookGroup>
                     <LPBook>
                         <LPBookBack />
-                        <LPDummy/>
-                        <LPBookFront onClick={props.openLpBook}/>
+                        <LPDummy>
+                            <LPCenter/>
+                        </LPDummy>
+                        <LPBookFront onClick={props.openLpBook}>
+                            <h1>
+                                Play?
+                            </h1>
+                        </LPBookFront>
                     </LPBook>
                     <LPBook>
                         <LPBookBack />
-                        <LPDummy/>
-                        <LPBookFront onClick={props.openLpBook}/>
+                        <LPDummy>
+                            <LPCenter/>
+                        </LPDummy>
+                        <LPBookFront onClick={props.openLpBook}>
+                            <h1>
+                                Play?
+                            </h1>
+                        </LPBookFront>
                     </LPBook>
                     <LPBook>
                         <LPBookBack />
-                        <LPDummy/>
-                        <LPBookFront onClick={props.openLpBook}/>
+                        <LPDummy>
+                            <LPCenter/>
+                        </LPDummy>
+                        <LPBookFront onClick={props.openLpBook}>
+                            <h1>
+                                Play?
+                            </h1>
+                        </LPBookFront>
                     </LPBook>
                 </LPBookGroup>
                 <LPBookGroup>
                     <LPBook>
                         <LPBookBack />
-                        <LPDummy/>
-                        <LPBookFront onClick={props.openLpBook}/>
+                        <LPDummy>
+                            <LPCenter/>
+                        </LPDummy>
+                        <LPBookFront onClick={props.openLpBook}>
+                            <h1>
+                                Play?
+                            </h1>
+                        </LPBookFront>
                     </LPBook>
                     <LPBook>
                         <LPBookBack />
-                        <LPDummy/>
-                        <LPBookFront onClick={props.openLpBook}/>
+                        <LPDummy>
+                            <LPCenter/>
+                        </LPDummy>
+                        <LPBookFront onClick={props.openLpBook}>
+                            <h1>
+                                Play?
+                            </h1>
+                        </LPBookFront>
                     </LPBook>
                     <LPBook>
                         <LPBookBack />
-                        <LPDummy/>
-                        <LPBookFront onClick={props.openLpBook}/>
+                        <LPDummy>
+                            <LPCenter/>
+                        </LPDummy>
+                        <LPBookFront onClick={props.openLpBook}>
+                            <h1>
+                                Play?
+                            </h1>
+                        </LPBookFront>
                     </LPBook>
                 </LPBookGroup>
                 <LPBookGroup>
                     <LPBook>
                         <LPBookBack />
-                        <LPDummy/>
-                        <LPBookFront onClick={props.openLpBook}/>
+                        <LPDummy>
+                            <LPCenter/>
+                        </LPDummy>
+                        <LPBookFront onClick={props.openLpBook}>
+                            <h1>
+                                Play?
+                            </h1>
+                        </LPBookFront>
                     </LPBook>
                     <LPBook>
                         <LPBookBack />
-                        <LPDummy/>
-                        <LPBookFront onClick={props.openLpBook}/>
+                        <LPDummy>
+                            <LPCenter/>
+                        </LPDummy>
+                        <LPBookFront onClick={props.openLpBook}>
+                            <h1>
+                                Play?
+                            </h1>
+                        </LPBookFront>
                     </LPBook>
                     <LPBook>
                         <LPBookBack />
-                        <LPDummy/>
-                        <LPBookFront onClick={props.openLpBook}/>
+                        <LPDummy>
+                            <LPCenter/>
+                        </LPDummy>
+                        <LPBookFront onClick={props.openLpBook}>
+                            <h1>
+                                Play?
+                            </h1>
+                        </LPBookFront>
                     </LPBook>
                 </LPBookGroup>
             </LPBrary>
@@ -88,13 +144,30 @@ function CCCRoomComponent(props: Props) {
                 </LP>
                 <LPBoxBlock>
                     <LPBoxFront>
-                        <LPStick>
-                            <LPStickBottom>
+                        <LPStick ref={props.refStick}>
+                            <LPStickController>
+                                <ControllerFront/>
+                                <ControllerBack />
+                                <ControllerTop />
+                            </LPStickController>
+                            <LPStickBottom ref={props.refStickBody}>
                                 <LPStickTop/>
                                 <LPStickLeft>
                                     <LPStickBody>
                                         <LPStickRound>
-                                            <RoundTop/>
+                                            <RoundFront/>
+                                            <RoundBack/>
+                                            <RoundTop>
+                                                <LPEnd>
+                                                    <EndTop/>
+                                                    <EndBottom>
+                                                        <LPpin/>
+                                                    </EndBottom>
+                                                    <EndFront/>
+                                                    <EndRight/>
+                                                    <EndBack/>
+                                                </LPEnd>
+                                            </RoundTop>
                                             <RoundLeft/>
                                             <RoundRight />
                                         </LPStickRound>
@@ -115,10 +188,179 @@ function CCCRoomComponent(props: Props) {
     )
 }
 
+const LPpin = styled.div`
+    width: 1px;
+    height: 10px;
+
+    background-color: rgb(0,0,0);
+
+    transform: rotateX(-90deg);
+`;
+
+const LPEnd = styled.div`
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    transform: rotateY(-25deg) translateZ(3px);
+    transform-origin: 100% 100%;
+    transform-style: preserve-3d;
+    background-color: rgb(255,255,255);
+
+    & > div {
+        box-sizing: border-box;
+        border: 1px solid rgb(0,0,0);
+        background-color: rgb(255,255,255);
+    }
+`;
+
+const EndTop = styled.div`
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 40px;
+
+    transform: rotateX(90deg);
+    transform-origin: 50% 100%;
+`;
+
+const EndRight = styled.div`
+    position: absolute;
+
+    bottom: 0;
+    right: 0;
+
+    width: 40px;
+    height: 100%;
+
+    transform: rotateY(-90deg);
+    transform-origin: 100% 50%;
+`;
+
+const EndFront = styled.div`
+    position: absolute;
+
+    bottom: 0;
+    right: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transform: translateZ(-40px);
+`;
+
+const EndBack = styled.div`
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 40px;
+    height: 100%;
+
+    transform: rotateY(90deg);
+    transform-origin: 0% 50%;
+`;
+
+const EndBottom = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 40px;
+
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0%;
+    transform-style: preserve-3d;
+`;
+
+const LPStickController = styled.div`
+    position: relative;
+
+    width: 20px;
+    height: 20px;
+
+    box-sizing: border-box;
+
+    transform-style: preserve-3d;
+`;
+
+const ControllerFront = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 0;    
+
+    width: 100%;
+    height: 10px;
+
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(0,0,0);
+    box-sizing: border-box;
+
+    transform: rotateX(-90deg);
+    transform-origin: 50% 100%;
+`;
+
+const ControllerTop = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: 1px solid rgb(0,0,0);
+    box-sizing: border-box;
+
+    transform: translateZ(10px);
+`;
+
+const ControllerBack = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 10px;
+    height: 100%;
+
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(0,0,0);
+    box-sizing: border-box;
+
+    transform: rotateY(90deg);
+    transform-origin: 100% 50%;
+`;
+
+
+const LPCenter = styled.div`
+    width: 50%;
+    height: 50%;
+
+    border-radius: 100%;
+
+    background-color: rgb(0,0,0);
+`;
+
 const LPDummy = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     width: 100%;
     height: 100%;
@@ -137,10 +379,10 @@ const LPDummy = styled.div`
 const LPBookGroup = styled.div`
     display: flex;
 
-    flex-direction: column;
+    transform-style: preserve-3d;
 
     & > div:not(:last-child) {
-        margin: 0 0 1rem 0;
+        margin: 0 1rem 0 0;
     }
 `;
 
@@ -148,6 +390,10 @@ const LPBookFront = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     width: 100%;
     height: 100%;
@@ -160,8 +406,16 @@ const LPBookFront = styled.div`
 
     background-color: rgb(255,255,255);
 
-    transition: 1s;
+    transition: .5s;
     cursor: pointer;
+
+    & > h1 {
+        font-size: 2rem;
+        letter-spacing: .5rem;
+
+        transition: .25s;
+        opacity: 0;
+    }
 `;
 
 const LPBookBack = styled.div`
@@ -186,25 +440,55 @@ const LPBook = styled.div`
     height: 300px;
 
     transform-style: preserve-3d;
+
+    &:hover > div:nth-child(3) {
+        transform: rotateX(-7.5deg);
+
+        & > h1 {
+            opacity: 1;
+        }
+    }
+
+    &:hover > div:nth-child(2) {
+        transform: translateY(-150px);
+    }
+
+    &:hover > div:nth-child(1) {
+        transform: rotateX(1deg);
+    }
 `;
 
 const LPBrary = styled.div`
     position: absolute;
 
     display: flex;
+    flex-direction: column;
 
     top: 0;
     left: 50%;
     margin: 0 0 0 -450px;
     box-sizing: border-box;
 
-
-    transform: translateZ(-300px) translateY(-3rem);
     transform-style: preserve-3d;
 
+    transform: translateZ(-300px) translateY(-3rem) rotateX(5deg);
+
     & > div:not(:last-child) {
-        margin: 0 1rem 0 0;
+        margin: 0 0 1rem 0;
     }
+
+    & > div:nth-child(1) {
+        transform: translateZ(1px);
+    }
+
+    & > div:nth-child(2) {
+        transform: translateZ(4px);
+    }
+
+    & > div:nth-child(3) {
+        transform: translateZ(7px);
+    }
+
 `;
 
 const LPStickBody = styled.div`
@@ -223,44 +507,87 @@ const LPStickRound = styled.div`
     left: 0;
     bottom: 0;
 
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
 
     z-index: 10;
 
-    background-color: rgb(0,0,0);
     transform-style: preserve-3d;
     
     & > div {
-        position: absolute;
-        top: 0;
-        left: 0;
+        background-color: rgb(255,255,255);
     }
 `;
 
 const RoundTop = styled.div`
-    width: 5px;
-    height: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-    background-color: red;
-    transform: translateZ(-20px);
-
-    border-end-start-radius: 100%;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+    transform: translateZ(-200px);
+    transform-style: preserve-3d;
 `;
+
 const RoundLeft = styled.div`
-    width: 5px;
-    height: 20px;
-    background-color: green;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+    box-sizing: border-box;
 
     transform: rotateX(-90deg) rotateY(90deg);
     transform-origin: 100% 0%;
 `;
+
 const RoundRight = styled.div`
-    width: 5px;    
-    height: 20px;
-    background-color: blue;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;    
+    height: 200px;
+
+    border: 1px solid black;
+    box-sizing: border-box;
 
     transform: rotateX(-90deg);
+    transform-origin: 0% 0%;
+`;
+
+const RoundFront = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;    
+    height: 200px;
+
+    border: 1px solid black;
+    box-sizing: border-box;
+
+    transform: rotateX(90deg);
+    transform-origin: 50% 100%;
+`;
+
+const RoundBack = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;    
+    height: 200px;
+
+    border: 1px solid black;
+    box-sizing: border-box;
+
+    transform: rotateX(-90deg) rotateY(-90deg);
     transform-origin: 0% 0%;
 `;
 
@@ -272,6 +599,11 @@ const LPStickBottom = styled.div`
     width: 20px;
     height: 50px;
 
+    border: 1px solid rgb(0,0,0);
+    transform: translateZ(10px);
+    transition: 1s;
+    /* transform: translateZ(10px) rotateX(25deg); */
+    transform-origin: 50% 0%;
     transform-style: preserve-3d;
 
     & > div {
@@ -285,8 +617,8 @@ const LPStickTop = styled.div`
     top: 0;
     left: 0;
 
-    width: 100%;
-    height: 100%;
+    width: 20px;
+    height: 50px;
 
     border: 1px solid rgb(0,0,0);
 
@@ -303,7 +635,7 @@ const LPStickLeft = styled.div`
     top: 100%;
     left: 0;
 
-    width: 100%;
+    width: 20px;
     height: 20px;
 
     border: 1px solid rgb(0,0,0);
@@ -314,8 +646,8 @@ const LPStickLeft = styled.div`
 `;
 
 const LPStickRight = styled.div`
-    width: 100%;
-    height: 100%;
+    width: 20px;
+    height: 50px;
 
     border: 1px solid rgb(0,0,0);
 
@@ -329,10 +661,14 @@ const LPStick = styled.div`
     left: 1rem;
 
     width: 20px;
-    height: 200px;
+    height: 300px;
 
     box-sizing: border-box;
-    border: 1px solid rgb(0,0,0);
+    
+    /* transform: rotateZ(-25deg); */
+    transition: 1s;
+    transform-origin: 0% 0%;
+    transform-style: preserve-3d;
 `;
 
 const CCCAudio = styled.audio`
@@ -532,6 +868,7 @@ const LPBack = styled.div`
     border-radius: 100%;
     background-color: rgb(255,255,255);
     transform-style: preserve-3d;
+
 `;
 
 const LPHole = styled.div`
