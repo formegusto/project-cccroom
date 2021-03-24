@@ -382,7 +382,7 @@ const LPBookGroup = styled.div`
     transform-style: preserve-3d;
 
     & > div:not(:last-child) {
-        margin: 0 1rem 0 0;
+        margin: 0 20px 0 0;
     }
 `;
 
@@ -415,6 +415,21 @@ const LPBookFront = styled.div`
 
         transition: .25s;
         opacity: 0;
+
+        @media ${({theme}) => theme.device.laptop} {
+            font-size: 2rem;
+            letter-spacing: .5rem;
+        }
+
+        @media ${({theme}) => theme.device.tablet} {
+            font-size: 1.5rem;
+            letter-spacing: .25rem;
+        }
+
+        @media ${({theme}) => theme.device.mobile} {
+            font-size: 1rem;
+            letter-spacing: .125rem;
+        }
     }
 `;
 
@@ -438,7 +453,6 @@ const LPBook = styled.div`
 
     width: 300px;
     height: 300px;
-
     transform-style: preserve-3d;
 
     &:hover > div:nth-child(3) {
@@ -456,6 +470,33 @@ const LPBook = styled.div`
     &:hover > div:nth-child(1) {
         transform: rotateX(1deg);
     }
+
+    @media ${({theme}) => theme.device.laptop} {
+        width: 300px;
+        height: 300px;
+
+        &:hover > div:nth-child(2) {
+            transform: translateY(-150px);
+        }
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        width: 200px;
+        height: 200px;
+
+        &:hover > div:nth-child(2) {
+            transform: translateY(-100px);
+        }
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        width: 100px;
+        height: 100px;
+
+        &:hover > div:nth-child(2) {
+            transform: translateY(-50px);
+        }
+    }
 `;
 
 const LPBrary = styled.div`
@@ -466,7 +507,7 @@ const LPBrary = styled.div`
 
     top: 0;
     left: 50%;
-    margin: 0 0 0 -450px;
+    margin: 0 0 0 -470px;
     box-sizing: border-box;
 
     transform-style: preserve-3d;
@@ -489,6 +530,17 @@ const LPBrary = styled.div`
         transform: translateZ(7px);
     }
 
+    @media ${({theme}) => theme.device.laptop} {
+        margin: 0 0 0 -470px;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        margin: 0 0 0 -320px;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        margin: 0 0 0 -170px;
+    }
 `;
 
 const LPStickBody = styled.div`
