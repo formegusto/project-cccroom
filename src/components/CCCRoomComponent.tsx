@@ -24,109 +24,76 @@ function CCCRoomComponent(props: Props) {
             </CCCAudio>
             <LPBrary>
                 <LPBookGroup>
-                    <LPBook>
-                        <LPBookBack />
-                        <LPDummy>
-                            <LPCenter/>
-                        </LPDummy>
-                        <LPBookFront onClick={props.openLpBook} data-color="ivory">
-                            <h1>
-                                Play?
-                            </h1>
-                        </LPBookFront>
-                    </LPBook>
-                    <LPBook>
-                        <LPBookBack />
-                        <LPDummy>
-                            <LPCenter/>
-                        </LPDummy>
-                        <LPBookFront onClick={props.openLpBook} data-color="ivory">
-                            <h1>
-                                Play?
-                            </h1>
-                        </LPBookFront>
-                    </LPBook>
-                    <LPBook>
-                        <LPBookBack />
-                        <LPDummy>
-                            <LPCenter/>
-                        </LPDummy>
-                        <LPBookFront onClick={props.openLpBook} data-color="ivory">
-                            <h1>
-                                Play?
-                            </h1>
-                        </LPBookFront>
-                    </LPBook>
+                    {[0,5,8].map((num, idx) => 
+                        <LPBook key={idx}>
+                            <LPBookBack 
+                            style={{
+                                backgroundColor: Palette['ivory'][num]
+                            }}/>
+                            <LPDummy
+                            style={{
+                                backgroundColor: Palette['ivory'][num]
+                            }}>
+                                <LPCenter/>
+                            </LPDummy>
+                            <LPBookFront onClick={props.openLpBook} data-color="ivory"
+                            style={{
+                                backgroundColor: Palette['ivory'][num]
+                            }}>
+                                <h1>
+                                    Play?
+                                </h1>
+                            </LPBookFront>
+                        </LPBook>
+                    )}
                 </LPBookGroup>
                 <LPBookGroup>
-                    <LPBook>
-                        <LPBookBack />
-                        <LPDummy>
-                            <LPCenter/>
-                        </LPDummy>
-                        <LPBookFront onClick={props.openLpBook} data-color="yellow">
-                            <h1>
-                                Play?
-                            </h1>
-                        </LPBookFront>
-                    </LPBook>
-                    <LPBook>
-                        <LPBookBack />
-                        <LPDummy>
-                            <LPCenter/>
-                        </LPDummy>
-                        <LPBookFront onClick={props.openLpBook} data-color="yellow">
-                            <h1>
-                                Play?
-                            </h1>
-                        </LPBookFront>
-                    </LPBook>
-                    <LPBook>
-                        <LPBookBack />
-                        <LPDummy>
-                            <LPCenter/>
-                        </LPDummy>
-                        <LPBookFront onClick={props.openLpBook} data-color="yellow">
-                            <h1>
-                                Play?
-                            </h1>
-                        </LPBookFront>
-                    </LPBook>
+                    {[0,1,2].map((num, idx) => 
+                        <LPBook key={idx}>
+                            <LPBookBack 
+                            style={{
+                                backgroundColor: Palette['yellow'][num]
+                            }}/>
+                            <LPDummy
+                            style={{
+                                backgroundColor: Palette['yellow'][num]
+                            }}>
+                                <LPCenter/>
+                            </LPDummy>
+                            <LPBookFront onClick={props.openLpBook} data-color="yellow"
+                            style={{
+                                backgroundColor: Palette['yellow'][num]
+                            }}>
+                                <h1>
+                                    Play?
+                                </h1>
+                            </LPBookFront>
+                        </LPBook>
+                    )}
                 </LPBookGroup>
                 <LPBookGroup>
-                    <LPBook>
-                        <LPBookBack />
-                        <LPDummy>
-                            <LPCenter/>
-                        </LPDummy>
-                        <LPBookFront onClick={props.openLpBook} data-color="green">
-                            <h1>
-                                Play?
-                            </h1>
-                        </LPBookFront>
-                    </LPBook>
-                    <LPBook>
-                        <LPBookBack />
-                        <LPDummy>
-                            <LPCenter/>
-                        </LPDummy>
-                        <LPBookFront onClick={props.openLpBook} data-color="green">
-                            <h1>
-                                Play?
-                            </h1>
-                        </LPBookFront>
-                    </LPBook>
-                    <LPBook>
-                        <LPBookBack />
-                        <LPDummy>
-                            <LPCenter/>
-                        </LPDummy>
-                        <LPBookFront onClick={props.openLpBook} data-color="green">
-                            <h1>
-                                Play?
-                            </h1>
-                        </LPBookFront>
-                    </LPBook>
+                    {[0,5,8].map((num, idx) => 
+                        <LPBook key={idx}>
+                            <LPBookBack 
+                            style={{
+                                backgroundColor: Palette['green'][num]
+                            }}/>
+                            <LPDummy
+                            style={{
+                                backgroundColor: Palette['green'][num]
+                            }}>
+                                <LPCenter/>
+                            </LPDummy>
+                            <LPBookFront onClick={props.openLpBook} data-color="green"
+                            style={{
+                                backgroundColor: Palette['green'][num]
+                            }}>
+                                <h1>
+                                    Play?
+                                </h1>
+                            </LPBookFront>
+                        </LPBook>
+                    )}
                 </LPBookGroup>
             </LPBrary>
             <LPBox>
@@ -139,7 +106,7 @@ function CCCRoomComponent(props: Props) {
                     >
                     <LPFront
                         style={{
-                            background: props.lpColor ? `linear-gradient(${props.lpColor[0]} 0%, ${props.lpColor[3]} 100%)` : "rgb(255,255,255)"
+                            background: props.lpColor ? `linear-gradient(${props.lpColor[0]} 0%, ${props.lpColor[5]} 30%, ${props.lpColor[6]} 70%, ${props.lpColor[7]} 100%)` : "rgb(255,255,255)"
                         }}
                     >
                         <LPCenter>
@@ -160,9 +127,13 @@ function CCCRoomComponent(props: Props) {
                 </LP>
                 <LPBoxBlock>
                     <LPBoxFront style={{
-                        backgroundColor: props.lpColor ? props.lpColor[2] : "rgb(255,255,255)"
+                        background: props.lpColor ? `linear-gradient(${props.lpColor[0]} 0%, ${props.lpColor[8]} 100%)` : "rgb(255,255,255)"
                     }}>
-                        <LPStick ref={props.refStick}>
+                        <LPStick ref={props.refStick}
+                            styleProps={{
+                                nowColor: props.lpColor
+                            }}
+                        >
                             <LPStickController>
                                 <ControllerFront/>
                                 <ControllerBack />
@@ -215,6 +186,10 @@ const LPpin = styled.div`
     transform: rotateX(-90deg);
 `;
 
+type StickProps = {
+    nowColor?: string[] | null;
+}
+
 const LPEnd = styled.div`
     position: relative;
 
@@ -226,12 +201,11 @@ const LPEnd = styled.div`
     transform: rotateY(-25deg) translateZ(3px);
     transform-origin: 100% 100%;
     transform-style: preserve-3d;
-    background-color: rgb(255,255,255);
+    /* background-color: rgb(255,255,255); */
 
-    & > div {
+    & div {
         box-sizing: border-box;
         border: 1px solid rgb(0,0,0);
-        background-color: rgb(255,255,255);
     }
 `;
 
@@ -323,7 +297,7 @@ const ControllerFront = styled.div`
     width: 100%;
     height: 10px;
 
-    background-color: rgb(255,255,255);
+    /* background-color: rgb(255,255,255); */
     border: 1px solid rgb(0,0,0);
     box-sizing: border-box;
 
@@ -353,7 +327,7 @@ const ControllerBack = styled.div`
     width: 10px;
     height: 100%;
 
-    background-color: rgb(255,255,255);
+    /* background-color: rgb(255,255,255); */
     border: 1px solid rgb(0,0,0);
     box-sizing: border-box;
 
@@ -578,14 +552,17 @@ const LPBrary = styled.div`
 
     @media ${({theme}) => theme.device.laptop} {
         margin: 0 0 0 -470px;
+        transform: translateZ(-300px) translateY(-3rem) rotateX(5deg);
     }
 
     @media ${({theme}) => theme.device.tablet} {
         margin: 0 0 0 -320px;
+        transform: translateZ(-300px) translateY(-3rem) rotateX(5deg);
     }
 
     @media ${({theme}) => theme.device.mobile} {
         margin: 0 0 0 -170px;
+        transform: translateZ(-300px) translateY(1rem) rotateX(5deg);
     }
 `;
 
@@ -595,9 +572,22 @@ const LPStickBody = styled.div`
     width: 50%;
     height: 50%;
 
-    background-color: #CCC;
-
     transform-style: preserve-3d;
+
+    @media ${({theme}) => theme.device.laptop} {
+        width: 50%;
+        height: 50%;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        width: 45%;
+        height: 45%;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        width: 40%;
+        height: 40%;
+    }
 `;
 
 const LPStickRound = styled.div`
@@ -613,7 +603,7 @@ const LPStickRound = styled.div`
     transform-style: preserve-3d;
     
     & > div {
-        background-color: rgb(255,255,255);
+        /* background-color: rgb(255,255,255); */
     }
 `;
 
@@ -628,6 +618,18 @@ const RoundTop = styled.div`
     /* border: 1px solid black; */
     transform: translateZ(-200px);
     transform-style: preserve-3d;
+
+    @media ${({theme}) => theme.device.laptop} {
+        transform: translateZ(-200px);
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        transform: translateZ(-120px);
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        transform: translateZ(-80px);
+    }
 `;
 
 const RoundLeft = styled.div`
@@ -642,6 +644,18 @@ const RoundLeft = styled.div`
 
     transform: rotateX(-90deg) rotateY(90deg);
     transform-origin: 100% 0%;
+
+    @media ${({theme}) => theme.device.laptop} {
+        height: 200px;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        height: 120px;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        height: 80px;
+    }
 `;
 
 const RoundRight = styled.div`
@@ -657,6 +671,18 @@ const RoundRight = styled.div`
 
     transform: rotateX(-90deg);
     transform-origin: 0% 0%;
+
+    @media ${({theme}) => theme.device.laptop} {
+        height: 200px;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        height: 120px;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        height: 80px;
+    }
 `;
 
 const RoundFront = styled.div`
@@ -672,6 +698,18 @@ const RoundFront = styled.div`
 
     transform: rotateX(90deg);
     transform-origin: 50% 100%;
+
+    @media ${({theme}) => theme.device.laptop} {
+        height: 200px;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        height: 120px;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        height: 80px;
+    }
 `;
 
 const RoundBack = styled.div`
@@ -687,6 +725,18 @@ const RoundBack = styled.div`
 
     transform: rotateX(-90deg) rotateY(-90deg);
     transform-origin: 0% 0%;
+
+    @media ${({theme}) => theme.device.laptop} {
+        height: 200px;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        height: 120px;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        height: 80px;
+    }
 `;
 
 const LPStickBottom = styled.div`
@@ -705,7 +755,7 @@ const LPStickBottom = styled.div`
     transform-style: preserve-3d;
 
     & > div {
-        background-color: rgb(255,255,255);
+        /* background-color: rgb(255,255,255); */
         box-sizing: border-box;
     }
 `;
@@ -741,6 +791,8 @@ const LPStickLeft = styled.div`
 
     transform: rotateX(90deg);
     transform-origin: 50% 0%;
+
+    
 `;
 
 const LPStickRight = styled.div`
@@ -753,7 +805,7 @@ const LPStickRight = styled.div`
     transform-origin: 100% 50%;
 `;
 
-const LPStick = styled.div`
+const LPStick = styled.div<{styleProps?:StickProps}>`
     position: absolute;
     top: 1rem;
     left: 1rem;
@@ -767,6 +819,13 @@ const LPStick = styled.div`
     transition: 1s;
     transform-origin: 0% 0%;
     transform-style: preserve-3d;
+
+    & div {
+        background-color: ${props => props.styleProps?.nowColor ? 
+            props.styleProps.nowColor[0]
+            : 
+            "rgb(255,255,255)"} ;
+    }
 `;
 
 const CCCAudio = styled.audio`
@@ -794,6 +853,24 @@ const LPBox = styled.div`
 
     transform: translateY(-20rem) rotateX(95deg) rotateZ(45deg);
     transform-style: preserve-3d;
+
+    @media ${({theme}) => theme.device.laptop} {
+        width: 500px;
+        height: 400px;
+        margin: 0 0 0 -250px;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        width: 400px;
+        height: 300px;
+        margin: 0 0 0 -200px;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        width: 300px;
+        height: 200px;
+        margin: 0 0 0 -150px;
+    }
 `;
 
 const LPBoxBlock = styled.div`
@@ -850,7 +927,7 @@ const LPBoxLeft = styled.div`
 
     width: 100%;
     height: calc(2.5rem - 2px);
-    background-color: rgb(255,255,255);
+    /* background-color: rgb(255,255,255); */
 
     border-end-start-radius: 1rem;
     border-end-end-radius: 1rem;
@@ -867,7 +944,7 @@ const LPBoxRight = styled.div`
 
     width: calc(2.5rem - 2px);
     height: 100%;
-    background-color: rgb(255,255,255);
+    /* background-color: rgb(255,255,255); */
 
     border-start-end-radius: 1rem;
     border-end-end-radius: 1rem;
@@ -899,8 +976,10 @@ const LPBoxBack = styled.div`
     height: 100%;
 
     border: 2px solid rgb(0,0,0);
+    border-top: none;
+    border-left: none;
     border-radius: 1rem;
-    background-color: rgb(255,255,255);
+    /* background-color: rgb(255,255,255); */
 
     transform: translateZ(-2.5rem);
 `;
@@ -930,6 +1009,24 @@ const LP = styled.div<{styleProps: LPProps}>`
     }
 
     transform: translateZ(150rem);
+
+    @media ${({theme}) => theme.device.laptop} {
+        width: 300px;
+        height: 300px;
+        margin: -150px 0 0 -150px;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        width: 200px;
+        height: 200px;
+        margin: -100px 0 0 -100px;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        width: 100px;
+        height: 100px;
+        margin: -50px 0 0 -50px;
+    }
 `;
 
 const LPFront = styled.div`
@@ -950,6 +1047,24 @@ const LPFront = styled.div`
 
     transform: translateZ(10px);
     transform-style: preserve-3d;
+
+    @media ${({theme}) => theme.device.laptop} {
+        width: 300px;
+        height: 300px;
+        transform: translateZ(10px);
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        width: 200px;
+        height: 200px;
+        transform: translateZ(5px);
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        width: 100px;
+        height: 100px;
+        transform: translateZ(2.5px);
+    }
 `;
 
 const LPBack = styled.div`
@@ -968,6 +1083,21 @@ const LPBack = styled.div`
     border-radius: 100%;
     background-color: rgb(255,255,255);
     transform-style: preserve-3d;
+
+    @media ${({theme}) => theme.device.laptop} {
+        width: 300px;
+        height: 300px;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        width: 200px;
+        height: 200px;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        width: 100px;
+        height: 100px;
+    }
 
 `;
 

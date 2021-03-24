@@ -9,7 +9,7 @@ type Theme = {
 }
 
 const deviceSizes: DeviceSize = {
-    mobile: "375px",
+    mobile: "428px",
     tablet: "768px",
     laptop: "1024px",
 };

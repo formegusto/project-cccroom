@@ -22,7 +22,14 @@ function CCCRoomContainer() {
     const moveStick = useCallback(function(this: HTMLDivElement, e: TransitionEvent){
         this.removeEventListener('transitionend', moveStick);
         if(refStick.current) {
-            refStick.current.style.transform = "rotateZ(-25deg)";
+            if(window.innerWidth > 1024) {
+                refStick.current.style.transform = "rotateZ(-25deg)";
+            } else if(window.innerWidth >= 768 ) {
+                refStick.current.style.transform = "rotateZ(-32deg)";
+            } else {
+                refStick.current.style.transform = "rotateZ(-37deg)";
+            }
+            
             refStick.current.addEventListener('transitionend', moveStickBodyDown);
         }
     }, [moveStickBodyDown]);
@@ -46,6 +53,9 @@ function CCCRoomContainer() {
         const lpBook = lpFront.parentNode;
         const lpDummy = lpBook?.querySelector("div:nth-child(2)") as HTMLDivElement;
         lpDummy.style.transform = "translateY(-200rem) translateZ(300px)";
+
+        console.log(Palette[color].join(" 0%,"));
+        document.body.style.background = "linear-gradient(45deg," + Palette[color][0] + "," + Palette[color][8] +")";
         lpDummy.addEventListener('transitionend', function(this:HTMLDivElement) {
             setLpAni(LPDrop);
             
