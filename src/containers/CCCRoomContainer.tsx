@@ -1,23 +1,69 @@
 import React, { useCallback, useRef, useState } from 'react';
 import CCCRoomComponent from '../components/CCCRoomComponent';
-import { LPDrop ,LPRotate } from '../animation/CCCRoomAnimation';
+import { LPDrop ,LPRotate, LPUp } from '../animation/CCCRoomAnimation';
 import { Keyframes } from 'styled-components';
 import Palette from '../style/palette';
 
 function CCCRoomContainer() {
     const [lpAni, setLpAni] = useState<Keyframes | null>(null);
     const [lpColor, setLpColor] = useState<string[] | null>(null);
+    const refButton = useRef<HTMLDivElement>(null);
     const refLP = useRef<HTMLDivElement>(null);
     const refAudio = useRef<HTMLAudioElement>(null);
     const refStick = useRef<HTMLDivElement>(null);
     const refStickBody = useRef<HTMLDivElement>(null);
 
+    const upLp = useCallback(function(this:HTMLDivElement, e: TransitionEvent) {
+        this.removeEventListener('transitionend', upLp);
+        setLpAni(LPUp);
+        setTimeout(function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, 100);
+    }, []);
+
+    const backStick = useCallback(function(this:HTMLDivElement, e: TransitionEvent) {
+        this.removeEventListener('transitionend', backStick);
+        if(refStick.current){
+            refStick.current.style.transform = "";
+            if(refStickBody.current) {
+                refStickBody.current.style.transform = "";
+                refStickBody.current.addEventListener('transitionend', upLp);
+            }
+        }
+    }, [upLp]);
+
+    const backStickBody = useCallback(function(this:HTMLDivElement, e: TransitionEvent) {
+        this.removeEventListener('transitionend',backStickBody);
+        if(refStickBody.current) {
+            refStickBody.current.style.transform = "translateZ(10px) rotateX(25deg)";
+            refStickBody.current.addEventListener('transitionend', backStick);
+        }
+    }, [backStick]);
+
+    const hideButtonBlock = useCallback(function(e: React.MouseEvent) {
+        if(refButton.current) {
+            refButton.current.style.transform = "";
+            refButton.current.addEventListener('transitionend', backStickBody);
+        }
+    }, [backStickBody]);
+
+    const showButtonBlock = useCallback(function(this: HTMLDivElement, e: TransitionEvent) {
+        this.removeEventListener('transitionend', showButtonBlock);
+        if(refButton.current) {
+            refButton.current.style.transform = "translateY(-3.5rem)";
+        }
+    }, []);
+
     const moveStickBodyDown = useCallback(function(this: HTMLDivElement, e: TransitionEvent) {
         this.removeEventListener('transitionend', moveStickBodyDown);
         if(refStickBody.current) {
             refStickBody.current.style.transform = "";
+            refStickBody.current.addEventListener('transitionend', showButtonBlock);
         }
-    }, []);
+    }, [showButtonBlock]);
 
     const moveStick = useCallback(function(this: HTMLDivElement, e: TransitionEvent){
         this.removeEventListener('transitionend', moveStick);
@@ -56,7 +102,10 @@ function CCCRoomContainer() {
         lpDummy.style.transform = "translateY(-200rem) translateZ(300px)";
 
         console.log(Palette[color].join(" 0%,"));
+
         document.body.style.background = "linear-gradient(45deg," + Palette[color][0] + "," + Palette[color][8] +")";
+        // document.body.style.height = "200vh";
+
         lpDummy.addEventListener('transitionend', function(this:HTMLDivElement) {
             setLpAni(LPDrop);
             
@@ -110,12 +159,14 @@ function CCCRoomContainer() {
     return <CCCRoomComponent
         lpAni={lpAni}
         lpColor={lpColor}
+        refButton={refButton}
         refLP={refLP}
         refAudio={refAudio}
         refStick={refStick}
         refStickBody={refStickBody}
         setLpRotate={setLpRotate}
         openLpBook={openLpBook}
+        hideButton={hideButtonBlock}
     />
 }
 

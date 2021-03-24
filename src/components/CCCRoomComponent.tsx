@@ -1,18 +1,21 @@
 import React from 'react';
 import styled, { css, Keyframes } from 'styled-components';
-import { LPDrop } from '../animation/CCCRoomAnimation';
+import { LPDrop, LPUp } from '../animation/CCCRoomAnimation';
 import sleepingbeauty from '../assets/music/paul_sleepingBeauty.mp3';
 import Palette from '../style/palette';
+import { AiOutlineSmile, AiOutlinePlayCircle, AiOutlinePauseCircle } from 'react-icons/ai';
 
 type Props = {
     lpAni?: Keyframes | null;
     lpColor: string[] | null;
+    refButton: React.Ref<HTMLDivElement>;
     refLP: React.Ref<HTMLDivElement>;
     refAudio: React.Ref<HTMLAudioElement>;
     refStick: React.Ref<HTMLDivElement>;
     refStickBody: React.Ref<HTMLDivElement>;
     setLpRotate: () => void;
     openLpBook: (e: React.MouseEvent) => void;
+    hideButton: (e: React.MouseEvent) => void;
 }
 
 function CCCRoomComponent(props: Props) {
@@ -171,11 +174,74 @@ function CCCRoomComponent(props: Props) {
                     <LPBoxRight/>
                     <LPEdgeLeft/>
                     <LPEdgeRight/>
+                    <LPBoxHidden>
+                        <ButtonBlock
+                            ref={props.refButton}
+                            styleProps={{
+                                nowColor: props.lpColor
+                            }}
+                        >
+                            <AiOutlinePlayCircle size={48}/>
+                            <AiOutlinePauseCircle size={48}/>
+                            <AiOutlineSmile size={48} onClick={props.hideButton}/>
+                        </ButtonBlock>
+                    </LPBoxHidden>
                 </LPBoxBlock>
             </LPBox>
         </CCCRoom>
     )
 }
+
+type StickProps = {
+    nowColor?: string[] | null;
+}
+
+const ButtonBlock = styled.div<{styleProps?: StickProps}>`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    height: 100%;
+
+    transition: .5s;
+    /* transform: translateY(-3.5rem); */
+    transform-style: preserve-3d;
+
+    & > svg {
+        cursor: pointer;
+    }
+
+    & > svg:nth-child(1) {
+        color: ${props => props.styleProps?.nowColor &&
+            props.styleProps.nowColor[12] }
+    }
+
+    & > svg:nth-child(2) {
+        margin: 0 5px 0 5px;
+        color: ${props => props.styleProps?.nowColor &&
+            props.styleProps.nowColor[10] }
+    }
+
+    & > svg:nth-child(3) {
+        color: ${props => props.styleProps?.nowColor &&
+            props.styleProps.nowColor[11] }
+    }
+`
+
+const LPBoxHidden = styled.div`
+    position: absolute;
+    top:0;
+    left:0;
+
+    width: 100%;
+    height: calc(2.5rem - 2px);
+
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0;
+
+    transform-style: preserve-3d;
+`;
 
 const LPpin = styled.div`
     width: 1px;
@@ -185,10 +251,6 @@ const LPpin = styled.div`
 
     transform: rotateX(-90deg);
 `;
-
-type StickProps = {
-    nowColor?: string[] | null;
-}
 
 const LPEnd = styled.div`
     position: relative;
@@ -791,8 +853,6 @@ const LPStickLeft = styled.div`
 
     transform: rotateX(90deg);
     transform-origin: 50% 0%;
-
-    
 `;
 
 const LPStickRight = styled.div`
@@ -1004,7 +1064,7 @@ const LP = styled.div<{styleProps: LPProps}>`
     cursor: pointer;
 
     ${props => props.styleProps.animation && 
-        props.styleProps.animation === LPDrop ?
+       (props.styleProps.animation === LPDrop || props.styleProps.animation === LPUp) ?
             css`animation: ${props.styleProps.animation} 1s forwards;` :
             css`animation: ${props.styleProps.animation} 1s linear infinite;`  
     }

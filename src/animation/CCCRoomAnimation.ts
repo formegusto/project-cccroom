@@ -14,8 +14,16 @@ const LPRotate = keyframes`
         transform: rotatez(360deg);
     }
 `;
+const LPUp = keyframes`
+    from {
+        transform: translateZ(0rem);
+    } to {
+        transform: translateZ(150rem);
+    } 
+`;
 
 export {
     LPRotate,
-    LPDrop
+    LPDrop,
+    LPUp
 }

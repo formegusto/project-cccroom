@@ -4,6 +4,7 @@
     [0] : main ccc like color,
     [1-4] : light ~ dark,
     [5-8] : 유사
+    [9-12] : 보색
 */
 
 const yellow: string[] = [
@@ -20,6 +21,12 @@ const yellow: string[] = [
     "#E6E08E",
     "#E6CE8E",
     "#FEDA9D",
+
+    // 보색
+    "#FCEA90",
+    "#C2FCDB",
+    "#9490FC",
+    "#FCA39D",
 ];
 
 const green: string[] = [
@@ -33,6 +40,11 @@ const green: string[] = [
     "#D5F5E5",
     "#D7F5D5",
     "#D9EBCC",
+
+    "#B6DEBF",
+    "#B6BBDE",
+    "#DEB6B9",
+    "#DED7C1",
 ];
 
 const ivory: string[] = [
@@ -46,6 +58,11 @@ const ivory: string[] = [
     "#DBD8C5",
     "#DBD3C5",
     "#F9EDE0",
+
+    "#F2E9CE",
+    "#CEF2D3",
+    "#CED6F2",
+    "#F2DAE0",
 ];
 
 type rtnType = {
