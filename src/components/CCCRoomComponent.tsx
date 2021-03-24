@@ -837,6 +837,7 @@ const CCCRoom = styled.div`
     width: 100vw;
     height: 200vh;
 
+    min-height: 1620px;
 
     perspective: 1000px;
 `;
