@@ -3,8 +3,14 @@ import { keyframes } from "styled-components";
 const LPDrop = keyframes`
     from {
         transform: translateZ(150rem);
+
+        & em {
+            transform: translateX(-5rem);
+        }
     } to {
         transform: translateZ(0rem);
+
+        
     } 
 `;
 const LPRotate = keyframes`
@@ -22,8 +28,26 @@ const LPUp = keyframes`
     } 
 `;
 
+const LPBrarySpin = keyframes`
+    from {
+        /* transform: translateZ(-300px) translateY(-3rem) rotateX(90deg); */
+    } to {
+        /* transform: translateZ(-300px) translateY(-3rem) rotateX(5deg); */
+    }
+`
+
+const TitleBoxAni = keyframes`
+    from {
+        transform: translateY(0rem) translateX(-5rem);
+    } to {
+        transform: translateY(-3.5rem) translateX(-2rem);
+    }
+`;
+
 export {
     LPRotate,
     LPDrop,
-    LPUp
+    LPUp,
+    LPBrarySpin,
+    TitleBoxAni
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css, Keyframes } from 'styled-components';
-import { LPDrop, LPUp } from '../animation/CCCRoomAnimation';
+import { LPDrop, LPUp, LPBrarySpin, TitleBoxAni } from '../animation/CCCRoomAnimation';
 import sleepingbeauty from '../assets/music/paul_sleepingBeauty.mp3';
 import Palette from '../style/palette';
 import { AiOutlineSmile, AiOutlinePlayCircle, AiOutlinePauseCircle } from 'react-icons/ai';
@@ -29,6 +29,11 @@ function CCCRoomComponent(props: Props) {
                 <source src={sleepingbeauty} />
             </CCCAudio>
             <LPBrary>
+                <TitleBox>
+                    <em className="big">C</em>
+                    <em className="middle">C</em>
+                    <em className="small">C</em>.Room
+                </TitleBox>
                 <LPBookGroup>
                     {[0,5,8].map((num, idx) => 
                         <LPBook key={idx}>
@@ -46,7 +51,7 @@ function CCCRoomComponent(props: Props) {
                             style={{
                                 backgroundColor: Palette['ivory'][num]
                             }}>
-                                <h1>
+                                <h1 onClick={() => {}}>
                                     Play?
                                 </h1>
                             </LPBookFront>
@@ -133,7 +138,7 @@ function CCCRoomComponent(props: Props) {
                 </LP>
                 <LPBoxBlock>
                     <LPBoxFront style={{
-                        background: props.lpColor ? `linear-gradient(${props.lpColor[0]} 0%, ${props.lpColor[8]} 100%)` : "rgb(255,255,255)"
+                        background: props.lpColor ? `linear-gradient(${props.lpColor[0]} 0%, ${props.lpColor[8]} 100%)` : "linear-gradient(45deg, #f3f0e8 30%, #fceea8 60%, #cedfd2 100%)"
                     }}>
                         <LPStick ref={props.refStick}
                             styleProps={{
@@ -566,6 +571,55 @@ const LPBook = styled.div`
     }
 `;
 
+const TitleBox = styled.h1`
+    position: absolute;
+
+    font-size: 3rem;
+    color: #FFF;
+
+    /* ${css`animation: ${TitleBoxAni} 1s forwards;`} */
+
+
+    & > em.big {
+        font-size: 1.5em;
+        color: ${Palette['yellow'][3]};
+        font-weight: 600;
+    }
+
+    & > em.middle {
+        font-size: 1.25em;
+        color: ${Palette['ivory'][3]};
+        font-weight: 500;
+    }
+
+    & > em.small {
+        font-size: 1em;
+        color: ${Palette['green'][3]};
+        font-weight: 400;
+    }
+    
+    transform: translateY(-1.75em) translateX(-1em);
+    letter-spacing: .15em;
+
+    @media ${({theme}) => theme.device.laptop} {
+        font-size: 3rem;
+        transform: translateY(-1.75em) translateX(-1em);
+        letter-spacing: .15em;
+    }
+
+    @media ${({theme}) => theme.device.tablet} {
+        font-size: 2.5rem;
+        transform: translateY(-1.5em) translateX(-.75em);
+        letter-spacing: .15em;
+    }
+
+    @media ${({theme}) => theme.device.mobile} {
+        font-size: 2rem;
+        transform: translateY(-1.5em) translateX(-.5em);
+        letter-spacing: .15em;
+    }
+`;
+
 const LPBrary = styled.div`
     position: absolute;
 
@@ -579,6 +633,7 @@ const LPBrary = styled.div`
 
     transform-style: preserve-3d;
 
+    ${css`animation: ${LPBrarySpin} 1s forwards;`}
     transform: translateZ(-300px) translateY(-3rem) rotateX(5deg);
 
     & > div:not(:last-child) {
@@ -906,7 +961,7 @@ const CCCRoom = styled.div`
     width: 100vw;
     height: 200vh;
 
-    min-height: 1620px;
+    min-height: 1820px;
 
     perspective: 1000px;
 `;

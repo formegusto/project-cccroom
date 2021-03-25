@@ -87,6 +87,7 @@ function CCCRoomContainer() {
                 }
             }
         }
+        document.body.style.background = "";
     }, [backStickBody, lpAni]);
 
     const showButtonBlock = useCallback(function(this: HTMLDivElement, e: TransitionEvent) {
@@ -140,22 +141,26 @@ function CCCRoomContainer() {
     }, [moveStickBody])
 
     const openLpBook = useCallback((e: React.MouseEvent) => {
-        const lpFront = e.target as HTMLDivElement;
-        lpFront.classList.add("open");
+        console.log(e.currentTarget.tagName);
 
+        const lpFront = e.currentTarget as HTMLDivElement;
+
+        lpFront.classList.add("open");
         console.log(lpFront.dataset);
         const color: string = lpFront.dataset.color as string;
         setLpColor(Palette[color]);
         lpFront.style.transform = "rotateX(-7.5deg)";
 
         const lpBook = lpFront.parentNode;
+        console.log(lpBook);
         const lpDummy = lpBook?.querySelector("div:nth-child(2)") as HTMLDivElement;
+
 
         lpDummy.style.transform = "translateY(-200rem) translateZ(300px)";
 
         console.log(Palette[color].join(" 0%,"));
 
-        document.body.style.background = "linear-gradient(45deg," + Palette[color][0] + "," + Palette[color][8] +")";
+        document.body.style.background = "linear-gradient(45deg," + Palette[color][0] + " 50%," + Palette[color][8] +" 100%)";
         // document.body.style.height = "200vh";
 
         lpDummy.addEventListener('transitionend', dropLpAni);
