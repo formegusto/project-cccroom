@@ -109,7 +109,9 @@ function CCCRoomContainer() {
     const moveStick = useCallback(function(this: HTMLDivElement, e: TransitionEvent){
         this.removeEventListener('transitionend', moveStick);
         if(refStick.current) {
-            if(window.innerWidth > 1024) {
+            if(window.innerHeight <= 428) {
+                refStick.current.style.transform = "rotateZ(-37deg)";
+            }else if(window.innerWidth > 1024) {
                 refStick.current.style.transform = "rotateZ(-25deg)";
             } else if(window.innerWidth >= 768 ) {
                 refStick.current.style.transform = "rotateZ(-32deg)";
@@ -167,7 +169,13 @@ function CCCRoomContainer() {
 
         lpDummy.addEventListener('transitionend', dropLpAni);
         setTimeout(function () {
-            if(window.innerHeight < 800) {
+            if(window.innerHeight <= 428) {
+                window.scrollTo({
+                    // top: document.body.scrollHeight,
+                    top: 1200,
+                    behavior: 'smooth'
+                });
+            }else if(window.innerHeight < 800) {
                 window.scrollTo({
                     // top: document.body.scrollHeight,
                     top: 980,

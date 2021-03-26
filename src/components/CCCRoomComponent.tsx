@@ -521,6 +521,11 @@ const LPBookFront = styled.div`
             font-size: 1rem;
             letter-spacing: .125rem;
         }
+
+        @media ${({theme}) => theme.device.mobileHeight} {
+            font-size: 1rem;
+            letter-spacing: .125rem;
+        }
     }
 `;
 
@@ -571,12 +576,30 @@ const LPBook = styled.div`
         }
     }
 
+    @media ${({theme}) => theme.device.tabletHeight} {
+        width: 200px;
+        height: 200px;
+
+        &:hover > div:nth-child(2) {
+            transform: translateY(-100px);
+        }
+    }
+
     @media ${({theme}) => theme.device.tablet} {
         width: 200px;
         height: 200px;
 
         &:hover > div:nth-child(2) {
             transform: translateY(-100px);
+        }
+    }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
+        width: 100px;
+        height: 100px;
+
+        &:hover > div:nth-child(2) {
+            transform: translateY(-50px);
         }
     }
 
@@ -588,6 +611,10 @@ const LPBook = styled.div`
             transform: translateY(-50px);
         }
     }
+
+    
+
+    
 `;
 
 const TitleBox = styled.h1`
@@ -646,6 +673,18 @@ const TitleBox = styled.h1`
     }
 
     @media ${({theme}) => theme.device.mobile} {
+        font-size: 2rem;
+        transform: translateY(-2em) translateX(-0.75em);
+        letter-spacing: .15em;
+    }
+
+    @media ${({theme}) => theme.device.tabletHeight} {
+        font-size: 2.5rem;
+        transform: translateY(-2em) translateX(-1em);
+        letter-spacing: .15em;
+    }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
         font-size: 2rem;
         transform: translateY(-2em) translateX(-0.75em);
         letter-spacing: .15em;
@@ -713,9 +752,19 @@ const LPBrary = styled.div`
         transform: translateZ(-300px) translateY(-3rem) rotateX(5deg);
     }
 
+    @media ${({theme}) => theme.device.tabletHeight} {
+        margin: 0 0 0 -320px;
+        transform: translateZ(-300px) translateY(-3rem) rotateX(5deg);
+    }
+
     @media ${({theme}) => theme.device.tablet} {
         margin: 0 0 0 -320px;
         transform: translateZ(-300px) translateY(-3rem) rotateX(5deg);
+    }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
+        margin: 0 0 0 -170px;
+        transform: translateZ(-300px) translateY(-10rem) rotateX(5deg);
     }
 
     @media ${({theme}) => theme.device.mobile} {
@@ -743,6 +792,11 @@ const LPStickBody = styled.div`
     }
 
     @media ${({theme}) => theme.device.mobile} {
+        width: 40%;
+        height: 40%;
+    }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
         width: 40%;
         height: 40%;
     }
@@ -788,6 +842,10 @@ const RoundTop = styled.div`
     @media ${({theme}) => theme.device.mobile} {
         transform: translateZ(-80px);
     }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
+        transform: translateZ(-80px);
+    }
 `;
 
 const RoundLeft = styled.div`
@@ -812,6 +870,10 @@ const RoundLeft = styled.div`
     }
 
     @media ${({theme}) => theme.device.mobile} {
+        height: 80px;
+    }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
         height: 80px;
     }
 `;
@@ -841,6 +903,10 @@ const RoundRight = styled.div`
     @media ${({theme}) => theme.device.mobile} {
         height: 80px;
     }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
+        height: 80px;
+    }
 `;
 
 const RoundFront = styled.div`
@@ -868,6 +934,10 @@ const RoundFront = styled.div`
     @media ${({theme}) => theme.device.mobile} {
         height: 80px;
     }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
+        height: 80px;
+    }
 `;
 
 const RoundBack = styled.div`
@@ -893,6 +963,10 @@ const RoundBack = styled.div`
     }
 
     @media ${({theme}) => theme.device.mobile} {
+        height: 80px;
+    }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
         height: 80px;
     }
 `;
@@ -1028,6 +1102,12 @@ const LPBox = styled.div`
         height: 200px;
         margin: 0 0 0 -150px;
     }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
+        width: 300px;
+        height: 200px;
+        margin: 0 0 0 -150px;
+    }
 `;
 
 const LPBoxBlock = styled.div`
@@ -1120,6 +1200,11 @@ const LPBoxLeft = styled.div<{styleProps?: StickProps}>`
             font-size: .5rem;
             transform: translateY(1rem);
         }
+
+        @media ${({theme}) => theme.device.mobileHeight} {
+            font-size: .5rem;
+            transform: translateY(1rem);
+        }
     }
 `;
 
@@ -1201,7 +1286,7 @@ const LP = styled.div<{styleProps: LPProps}>`
             css`animation: ${props.styleProps.animation} 1s linear infinite;`  
     }
 
-    transform: translateZ(150rem);
+    transform: translateZ(200rem);
 
     @media ${({theme}) => theme.device.laptop} {
         width: 300px;
@@ -1216,6 +1301,12 @@ const LP = styled.div<{styleProps: LPProps}>`
     }
 
     @media ${({theme}) => theme.device.mobile} {
+        width: 100px;
+        height: 100px;
+        margin: -50px 0 0 -50px;
+    }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
         width: 100px;
         height: 100px;
         margin: -50px 0 0 -50px;
@@ -1258,6 +1349,12 @@ const LPFront = styled.div`
         height: 100px;
         transform: translateZ(2.5px);
     }
+
+    @media ${({theme}) => theme.device.mobileHeight} {
+        width: 100px;
+        height: 100px;
+        transform: translateZ(2.5px);
+    }
 `;
 
 const LPBack = styled.div`
@@ -1293,6 +1390,10 @@ const LPBack = styled.div`
         height: 100px;
     }
 
+    @media ${({theme}) => theme.device.mobileHeight} {
+        width: 100px;
+        height: 100px;
+    }
 `;
 
 const LPHole = styled.div`

@@ -2,7 +2,7 @@ import { keyframes } from "styled-components";
 
 const LPDrop = keyframes`
     from {
-        transform: translateZ(150rem);
+        transform: translateZ(200rem);
 
         & em {
             transform: translateX(-5rem);
@@ -24,7 +24,7 @@ const LPUp = keyframes`
     from {
         transform: translateZ(0rem);
     } to {
-        transform: translateZ(150rem);
+        transform: translateZ(200rem);
     } 
 `;
 
